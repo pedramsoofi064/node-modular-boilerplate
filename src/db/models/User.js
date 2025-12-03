@@ -1,0 +1,87 @@
+/* eslint-disable no-param-reassign */
+const { Model } = require('sequelize');
+const bcrypt = require('bcryptjs');
+
+/**
+ *
+ * @param {import('sequelize').Sequelize} sequelize
+ * @param {import('sequelize/types')} DataTypes
+ * @returns
+ */
+module.exports = (sequelize, DataTypes) => {
+  /**
+   *
+   */
+  class User extends Model {
+    // with static add custom class method
+    /**
+     *
+     * @param models
+     */
+    static associate(models) {
+      // define association here
+
+    }
+
+    // add instance method here, below overrides toJSON()
+    /**
+     *
+     */
+    toJSON() {
+      const user = { ...this.dataValues };
+      delete user.password;
+      return user;
+    }
+  }
+  User.init(
+    {
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true,
+        },
+      },
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true,
+        },
+      },
+      isDeleted: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      role: {
+        type: DataTypes.STRING,
+        defaultValue: 'Student',
+        allowNull: false,
+        validate: {
+          notNull: true,
+          notEmpty: true,
+          isIn: [['Student', 'Teacher']],
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: 'User',
+      // hooks: {
+      //   // before validate will be called before beforeCreate, so it will throw validation error if used beforeCreate
+      //   /**
+      //    *
+      //    * @param user
+      //    */
+      //   beforeValidate: async (user) => {
+      //     if (user.password) {
+      //       user.password = await bcrypt.hash(user.password, 8);
+      //     }
+      //   },
+      // },
+    }
+  );
+  return User;
+};

@@ -1,0 +1,21 @@
+node_modules
+.nyc_output
+.idea
+logs
+coverage
+.DS_Store
+.env
+.env.local
+.env.*.local
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### Cypress ###
+cypress/downloads
+cypress/screenshots
+cypress/videos

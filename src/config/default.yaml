@@ -1,0 +1,6 @@
+---
+JWT_SIGN_OPTIONS:
+  issuer: Node Express API
+  audience: https://api.example.com
+  expiresIn: 15d
+API_PREFIX: /api/v1
