@@ -1,5 +1,5 @@
 {
-  "name": "node-express-modular-api",
+  "name": "node-express-modular-bolierplate",
   "version": "1.0.0",
   "description": "A production-ready RESTful API built with Node.js, Express, and Sequelize featuring modular architecture, authentication, validation, and comprehensive testing.",
   "main": "./src/server.js",
